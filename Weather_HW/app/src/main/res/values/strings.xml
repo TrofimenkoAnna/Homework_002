@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Weather_HW</string>
+    <string name="openweathermap"><![CDATA[http://api.openweathermap.org/data/2.5//forecast?id=710791&appid=06f953e173831a565f0bb4ccb6757082&units=metric]]></string>
+    <string name="icon_url">http://openweathermap.org/img/w/%1$s.png</string>
+    <string name="dd_mmm_yyyy">%1$s - %2$s - %3$s</string>
+    <string name="label_details_activity">Details Activity</string>
+</resources>
