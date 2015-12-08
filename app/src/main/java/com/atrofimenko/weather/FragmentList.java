@@ -61,9 +61,9 @@ public class FragmentList extends Fragment {
 
         if (!MainActivity.isConnected) {
             if (results.size() == 0) {
-                Snackbar.make(view, R.string.no_internet_no_db, Snackbar.LENGTH_INDEFINITE).show();
+                Snackbar.make(view, R.string.no_internet_no_db, Snackbar.LENGTH_SHORT).show();
             } else {
-                Snackbar.make(view, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                Snackbar.make(view, R.string.no_internet, Snackbar.LENGTH_SHORT).show();
             }
         } else {
 
