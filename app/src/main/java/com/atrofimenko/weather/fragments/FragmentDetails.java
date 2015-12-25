@@ -1,4 +1,4 @@
-package com.atrofimenko.weather;
+package com.atrofimenko.weather.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.atrofimenko.weather.R;
+import com.atrofimenko.weather.Util.RealmOneForecast;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;

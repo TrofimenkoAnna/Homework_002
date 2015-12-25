@@ -1,4 +1,4 @@
-package com.atrofimenko.weather;
+package com.atrofimenko.weather.activity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.atrofimenko.weather.R;
+import com.atrofimenko.weather.fragments.FragmentDetails;
 
 public class Details_Activity extends AppCompatActivity {
 

@@ -1,19 +1,26 @@
-package com.atrofimenko.weather;
+package com.atrofimenko.weather.activity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.atrofimenko.weather.Util.CallBackInterface;
+import com.atrofimenko.weather.R;
+import com.atrofimenko.weather.fragments.FragmentDetails;
+import com.atrofimenko.weather.fragments.FragmentList;
+import com.atrofimenko.weather.services.NotificationService;
+import com.atrofimenko.weather.services.WeatherService;
 
 public class MainActivity extends AppCompatActivity implements CallBackInterface {
 
@@ -28,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements CallBackInterface
         setContentView(R.layout.main_activity);
         isConnected = isNetworkConnected();
 
-
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         android.support.v7.app.ActionBar myActionBar = getSupportActionBar();
@@ -39,12 +45,17 @@ public class MainActivity extends AppCompatActivity implements CallBackInterface
 
         manager = getSupportFragmentManager();
 
-
         if (savedInstanceState == null) {
             FragmentList mList = new FragmentList();
             manager.beginTransaction()
                     .add(R.id.list_container, mList)
                     .commit();
+            //start NotificationService
+            Intent notification = new Intent(this, NotificationService.class);
+            this.startService(notification);
+
+            Intent intentUpdate = new Intent(this, WeatherService.class);
+            this.startService(intentUpdate);
         }
 
         if (withDetails()) {
@@ -64,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements CallBackInterface
                 position = savedInstanceState.getInt(POSITION_SELECTED);
             }
         }
+
     }
 
     @Override
@@ -108,6 +120,12 @@ public class MainActivity extends AppCompatActivity implements CallBackInterface
         return true;
     }
 
+    public void startService()
+    {
+        Intent intent = new Intent(this, WeatherService.class);
+        this.startService(intent);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -118,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements CallBackInterface
                             .show();
                 }
                 else {
+                    startService();
                     manager = getSupportFragmentManager();
                     FragmentList mList = new FragmentList();
                     manager.beginTransaction()

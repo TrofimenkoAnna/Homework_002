@@ -1,4 +1,4 @@
-package com.atrofimenko.weather;
+package com.atrofimenko.weather.Util;
 
 
 public interface CallBackInterface {
